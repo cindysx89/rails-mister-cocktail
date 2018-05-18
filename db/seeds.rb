@@ -10,15 +10,22 @@ require "open-uri"
 Ingredient.destroy_all
 Cocktail.destroy_all
 Cocktail.create!(name: "Mint Mojito")
+Cocktail.create!(name: "Margarita")
+
 
 url = 'https://www.thecocktaildb.com/api/json/v1/1/list.php?i=list'
 ingredient = open(url).read
 json_ingredient = JSON.parse(ingredient)
 
-arrIngred = json_ingredient["drinks"].each do |ingredient|
-  ingredient["name"] = ingredient["strIngredient1"]
-  ingredient.delete("strIngredient1")
+json_ingredient["drinks"].each do |ingredient|
+  Ingredient.create(name: ingredient['strIngredient1'])
 end
 
-Ingredient.create!(arrIngred)
 
+
+
+doses= ["30ml Rum", "30ml Vodka", "30ml Whiskey", "30ml Tequila"]
+
+doses.each do |dose|
+  Dose.create(description: dose)
+end
