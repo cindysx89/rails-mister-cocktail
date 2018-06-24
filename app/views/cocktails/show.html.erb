@@ -1,7 +1,9 @@
 
 <h2><%= @cocktail.name %></h2>
+<h3><%= @cocktail.description %></h3>
 
-<%= link_to "Doses", new_cocktail_dose_path(@cocktail) %>
+
+<%= link_to "Add a dose", new_cocktail_dose_path(@cocktail) %>
 
 
 
